@@ -1,7 +1,7 @@
 const asyncHandler = require("express-async-handler");
 const User = require("../models/userModel");
 const jwt = require("jsonwebtoken");
-const bcrypt = require("bcrypt");
+// const bcrypt = require("bcrypt");
 
 const registerUser = asyncHandler(async (req, res) => {
   const { name, email, password } = req.body;
@@ -18,7 +18,7 @@ const registerUser = asyncHandler(async (req, res) => {
     throw new Error("Admin already exist with this email!");
   }
 
-  const hashedPassword = await bcrypt.hash(password, 10);
+  // const hashedPassword = await bcrypt.hash(password, 10);
 
   const user = await User.create({
     name,
@@ -44,10 +44,10 @@ const loginUser = asyncHandler(async (req, res) => {
     throw new Error("User not found!");
   }
 
-  if (!(await bcrypt.compare(password, userAvailable.password))) {
-    res.status(404);
-    throw new Error("email or password is wrong!");
-  }
+  // if (!(await bcrypt.compare(password, userAvailable.password))) {
+  //   res.status(404);
+  //   throw new Error("email or password is wrong!");
+  // }
 
   const accessToken = jwt.sign(
     {
