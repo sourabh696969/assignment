@@ -10,6 +10,10 @@ const PORT = process.env.PORT || 5000;
 
 app.use(cors());
 app.use(express.json());
+
+app.use("/", (req, res) => {
+  res.json({ message: "Welcom to CodeRower Assignment" });
+});
 app.use("/api", require("./routes/routes"));
 app.use(errorHandler);
 
